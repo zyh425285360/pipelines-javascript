@@ -9,23 +9,14 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 
-steps:
-- task: NodeTool@0
-  inputs:
-    versionSpec: '10.x'
-  displayName: 'Install Node.js'
+stages:
+- stage: A
+  jobs:
+  - job: A1
+  - job: A2
 
-- script: |
-    npm install
-    npm run build
-  displayName: 'npm install and build'
+- stage: B
+  jobs:
+  - job: B1
+  - job: B2
 
-# this pipeline has one implicit stage
-jobs:
-- job: A
-  steps:
-  - bash: echo "A"
-
-- job: B
-  steps:
-  - bash: echo "B"
